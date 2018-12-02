@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/wangsicong.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="big">
+        <div id="one">
+            <img id="img1" src="./img/wang2.png">
+            <img id="img2" src="./img/wang1.png">
+        </div>
+       
+        <img id="img3" src="./img/奖杯.png">
+
+    </div>
+    <script>
+    var oImg1 = document.getElementById('img2');
+    var oImg2 = document.getElementById('img1');
+    var oImg3 = document.getElementById('img3');
+
+    document.onkeydown=function(e){  //对整个页面文档监听 
+       var keyNum=window.event ? e.keyCode :e.which;  //获取被按下的键值 
+       //判断如果用户按下了回车键（keycody=13）
+       
+        if(keyNum==38){ 
+            var n1 =  oImg1.offsetTop;
+           var m1 = oImg2.offsetTop;
+           n1 -= 10;
+           m1 -= 10;
+           oImg1.style.top=n1+'px';
+            oImg2.style.top=m1+'px';
+       
+       }
+      
+         
+       //判断如果用户按下了空格键(keycode=32)， 
+       if(keyNum==40){
+           var n =  oImg1.offsetTop;
+           var m = oImg2.offsetTop;
+
+           console.log(n);
+           n += 10;
+           m += 10;
+        oImg1.style.top=n+'px';
+            oImg2.style.top=m+'px';
+         }
+        
+         if(keyNum==32){ 
+            // var n2 = oImg1.offsetLeft;
+            // n2 +=10;
+        oImg1.style.left=100+'%';
+        oImg1.style.transition=3+'s';
+        
+           
+    //    alert('您按下了空格'); 
+            
+       }setTimeout(function(keyNum=32){
+           var v = oImg1.style.left;
+           console.log(typeof v);
+           if(oImg1.style.left='100%'){
+               oImg1.style.left=9+'%';
+               oImg1.style.transition=0+"s";
+           }  
+           }, 3000);
+       
+        }
+
+        
+        directY=1;//y轴的方向
+            //上面两个全局变量似乎没有生效
+            //sunX=0;//小太阳的坐标x
+            sunY=0;//小太阳的坐标y
+        function sunMove(){
+
+            
+            sunY+=directY;
+            
+
+            //修改div的left top
+            oImg3.style.top=sunY+"px";
+            
+            
+            //判断y
+            if(sunY+oImg3.offsetHeight>=document.body.clientHeight||sunY<=0){
+                //directY-=directY;
+                directY=-directY;
+                //window.alert(directY);
+            }
+        }
+
+        setInterval("sunMove()",4);
+
+       
+    </script>
+</body>
+</html>
